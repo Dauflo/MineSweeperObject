@@ -15,9 +15,7 @@ import javax.swing.JToggleButton;
  */
 public class GameBoard extends javax.swing.JFrame {
 
-    /**
-     * Creates new form GameBoard
-     */
+    //Variables
     private Mine[][] board;
     JToggleButton[][] displayBoard;
 
@@ -25,6 +23,7 @@ public class GameBoard extends javax.swing.JFrame {
     static private int rows;
     static private int bombs;
 
+    //Constructeur
     public GameBoard(int c, int r, int b) {
         initComponents();
         cols = c;
@@ -34,6 +33,7 @@ public class GameBoard extends javax.swing.JFrame {
         setup();
     }
 
+    //Generation des jtoggles buttons
     private void setup() {
         board = new Mine[cols][rows];
         displayBoard = new JToggleButton[cols][rows];
@@ -51,6 +51,7 @@ public class GameBoard extends javax.swing.JFrame {
         }
     }
     
+    //Action lisnter pour trouver la tile appuyée
     ActionListener listen = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent ae) {
@@ -75,7 +76,8 @@ public class GameBoard extends javax.swing.JFrame {
             win();
         }
     };
-
+    
+    //Initatialistation des mines
     private void setBombs(int nbBombs) {
         for (int i = 0; i < cols; i++) {
             for (int j = 0; j < rows; j++) {
@@ -94,6 +96,7 @@ public class GameBoard extends javax.swing.JFrame {
         }
     }
     
+    //Display graphique
     private void display() {
         for (int i = 0; i < cols; i++) {
             for (int j = 0; j < rows; j++) {
@@ -106,6 +109,7 @@ public class GameBoard extends javax.swing.JFrame {
         jPanel1.repaint();
     }
 
+    //Algo
     private void openCase(int x, int y) {
         if (x < 0 || y < 0 || x > cols - 1 || y > rows - 1 || board[x][y].isOpen()) {
             return;
@@ -171,6 +175,7 @@ public class GameBoard extends javax.swing.JFrame {
         }
     }
 
+    //Rezise
     private void goodSize() {
         for (int i = 0; i < cols; i++) {
             for (int j = 0; j < rows; j++) {
@@ -232,6 +237,8 @@ public class GameBoard extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    //Pour resize
     private void jPanel1ComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel1ComponentResized
         goodSize();
     }//GEN-LAST:event_jPanel1ComponentResized
